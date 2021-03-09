@@ -1,0 +1,42 @@
+name: Build main manifest branch
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: Javier-varez/google-repo-action@v0.2
+      with:
+        manifest-url: 'Javier-varez/manifest'
+        checkout-deps: true
+    - name: arm-none-eabi-gcc
+      uses: fiam/arm-none-eabi-gcc@v1.0.3
+      with:
+        release: '9-2020-q2'
+    - name: Install bear
+      run: sudo apt install bear
+    - name: Build
+      run: make -j
+
+  clang_format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: Javier-varez/google-repo-action@v0.3
+      with:
+        manifest-url: 'Javier-varez/manifest'
+        checkout-deps: true
+    - name: clang-format lint
+      uses: DoozyX/clang-format-lint-action@v0.11
+      with:
+        source: 'cortex-m_hal'
+        clangFormatVersion: 10
+
