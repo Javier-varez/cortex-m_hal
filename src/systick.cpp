@@ -1,39 +1,7 @@
 
 #include "cortex_m_hal/systick.h"
 
-struct SysTickRegs {
-  volatile union {
-    uint32_t reg;
-    struct {
-      uint32_t enable : 1;
-      uint32_t tickint : 1;
-      uint32_t clksource : 1;
-      uint32_t : 13;
-      uint32_t countflag : 1;
-    } bits;
-  } CSR;
-  volatile union {
-    uint32_t reg;
-    struct {
-      uint32_t rv : 24;
-    } bits;
-  } RVR;
-  volatile union {
-    uint32_t reg;
-    struct {
-      uint32_t cv : 24;
-    } bits;
-  } CVR;
-  volatile union {
-    uint32_t reg;
-    struct {
-      uint32_t cal_value : 24;
-      uint32_t : 6;
-      uint32_t skew : 1;
-      uint32_t noref : 1;
-    } bits;
-  } CALVR;
-};
+#include "cortex_m_hal/registers.h"
 
 static __attribute__((section(".systick_regs"))) SysTickRegs s_systick_regs;
 
