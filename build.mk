@@ -21,7 +21,8 @@ LOCAL_CXXFLAGS := \
     -fno-exceptions \
     -fno-rtti
 LOCAL_SRC := \
-    $(LOCAL_DIR)/src/systick.cpp
+    $(LOCAL_DIR)/src/systick.cpp \
+    $(LOCAL_DIR)/src/dwt.cpp
 LOCAL_ARM_ARCHITECTURE := v7-m
 LOCAL_ARM_FPU := nofp
 LOCAL_COMPILER := arm_clang
