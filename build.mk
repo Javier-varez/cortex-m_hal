@@ -7,6 +7,7 @@ LOCAL_CFLAGS := \
     -mfloat-abi=soft \
     -mthumb \
     -I$(LOCAL_DIR)/inc \
+    -DARMV7_ARCH \
     -Os \
     -g3 \
     -Wall \
