@@ -12,13 +12,28 @@ static Dwt* s_dwt = nullptr;
 
 extern "C" void DebugMonHandlerHL(void* sp) { s_dwt->DebugMonitorIsr(sp); }
 
-extern "C" void DebugMon_Handler() {
+extern "C" __attribute__((naked)) void DebugMon_Handler() {
+#ifdef ARMV7_ARCH
   asm volatile(
       "tst lr, #4 \n"
       "ite eq \n"
       "mrseq r0, msp \n"
       "mrsne r0, psp \n"
       "b DebugMonHandlerHL \n");
+#elif ARMV6_ARCH
+  asm volatile(
+      "movs r0, #4 \n"
+      "mov r1, lr \n"
+      "tst r0, r1 \n"
+      "beq USE_MSP \n"
+      "mrs r0, psp \n"
+      "b DebugMonHandlerHL \n"
+      "USE_MSP: \n"
+      "mrs r0, msp \n"
+      "b DebugMonHandlerHL \n");
+#else
+#error("Invalid architecture selected.")
+#endif
 }
 
 Dwt::Dwt() { s_dwt = this; }
