@@ -23,7 +23,7 @@ class Dwt {
 
   Dwt();
   ~Dwt();
-  bool Init();
+  auto Init() -> bool;
   void SetWatchPoint(uint32_t id, Params params, Callback* cb);
   void ClearWatchPoint(uint32_t id);
 

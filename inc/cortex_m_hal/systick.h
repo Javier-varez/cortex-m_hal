@@ -16,16 +16,16 @@ class SysTick {
 
   constexpr static uint32_t TICKS_PER_SECOND = 1000;
 
-  void init(uint32_t core_clk_mhz);
+  void init(uint32_t core_clk_hz);
 
-  uint64_t getTickCount();
-  uint32_t getFineTickCount();
-  uint32_t getCoarseTickCount() { return m_ticks; }
-  void delay(uint32_t coarse_ticks);
+  [[nodiscard]] auto getTickCount() const -> uint64_t;
+  [[nodiscard]] auto getFineTickCount() const -> uint32_t;
+  [[nodiscard]] auto getCoarseTickCount() const -> uint32_t { return m_ticks; }
+  void delay(uint32_t coarse_ticks) const;
 
   void set_listener(Listener* listener) { m_listener = listener; }
 
-  static SysTick& getInstance() {
+  static auto getInstance() -> SysTick& {
     static SysTick systick;
     return systick;
   }

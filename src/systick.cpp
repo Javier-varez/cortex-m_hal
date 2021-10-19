@@ -20,7 +20,7 @@ void SysTick::init(uint32_t core_clk_hz) {
   s_systick_regs.CSR.bits.enable = true;
 }
 
-uint64_t SysTick::getTickCount() {
+auto SysTick::getTickCount() const -> uint64_t {
   uint32_t coarse = getCoarseTickCount();
   uint32_t fine = getFineTickCount();
 
@@ -31,19 +31,19 @@ uint64_t SysTick::getTickCount() {
   return static_cast<uint64_t>(m_max_count) * coarse + fine;
 }
 
-uint32_t SysTick::getFineTickCount() {
+auto SysTick::getFineTickCount() const -> uint32_t {
   return m_max_count - s_systick_regs.CVR.reg - 1;
 }
 
-void SysTick::delay(uint32_t coarse_ticks) {
+void SysTick::delay(uint32_t coarse_ticks) const {
   const uint32_t start = m_ticks;
   while ((m_ticks - start) < coarse_ticks) {
   }
 }
 
 void SysTick::handleIrq() {
-  m_ticks++;
-  if (m_listener) {
+  m_ticks = m_ticks + 1;
+  if (m_listener != nullptr) {
     m_listener->tickTock(m_ticks);
   }
 }

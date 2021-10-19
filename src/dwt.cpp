@@ -42,7 +42,7 @@ Dwt::~Dwt() { s_dwt = nullptr; }
 
 void Dwt::DebugMonitorIsr(void* sp) {
   for (uint32_t i = 0; i < MAX_COMPARATORS; i++) {
-    if ((s_dwt_regs.watchpoints[i].dwt_function.bits.matched) &&
+    if (((s_dwt_regs.watchpoints[i].dwt_function.bits.matched) != 0U) &&
         (m_callbacks[i] != nullptr)) {
       m_callbacks[i]->WatchpointTriggered(i, sp);
     }
