@@ -17,9 +17,9 @@ jobs:
         manifest-url: 'Javier-varez/manifest'
         checkout-deps: true
     - name: arm-none-eabi-gcc
-      uses: fiam/arm-none-eabi-gcc@v1.0.3
+      uses: fiam/arm-none-eabi-gcc@v1.0.4
       with:
-        release: '9-2020-q2'
+        release: '10-2020-q4'
     - name: Install bear
       run: sudo apt install bear
     - name: Build
@@ -39,4 +39,3 @@ jobs:
       with:
         source: 'cortex-m_hal'
         clangFormatVersion: 10
-
