@@ -1,6 +1,5 @@
-
-#ifndef HAL_SYSTICK_H_
-#define HAL_SYSTICK_H_
+#ifndef CORTEX_M_HAL_SYSTICK_H_
+#define CORTEX_M_HAL_SYSTICK_H_
 
 #include <cstdint>
 
@@ -42,4 +41,4 @@ class SysTick {
   friend void ::SysTick_Handler();
 };
 
-#endif  // HAL_SYSTICK_H_
+#endif  // CORTEX_M_HAL_SYSTICK_H_

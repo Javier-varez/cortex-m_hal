@@ -1,6 +1,5 @@
-
-#ifndef CORTEX_M_HAL_REGISTERS_HPP_
-#define CORTEX_M_HAL_REGISTERS_HPP_
+#ifndef CORTEX_M_HAL_REGISTERS_H_
+#define CORTEX_M_HAL_REGISTERS_H_
 
 #include <cstdint>
 
@@ -167,4 +166,4 @@ struct ScbDebugRegs {
   } demcr;
 };
 
-#endif  // CORTEX_M_HAL_REGISTERS_HPP_
+#endif  // CORTEX_M_HAL_REGISTERS_H_

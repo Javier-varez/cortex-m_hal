@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Cortex-M_hal)
 
 add_library(cortex-m_hal STATIC
+  src/core.cpp
   src/dwt.cpp
   src/systick.cpp)
 

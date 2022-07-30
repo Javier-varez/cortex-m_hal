@@ -1,3 +1,5 @@
+#ifndef CORTEX_M_HAL_DWT_H_
+#define CORTEX_M_HAL_DWT_H_
 
 #include <array>
 #include <cstdint>
@@ -40,3 +42,5 @@ class Dwt {
   void DebugMonitorIsr(void* sp);
   friend void ::DebugMonHandlerHL(void*);
 };
+
+#endif  // CORTEX_M_HAL_DWT_H_
