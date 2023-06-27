@@ -17,6 +17,9 @@ class SysTick {
 
   void init(uint32_t core_clk_hz);
 
+  void disable();
+  void maskIrq();
+
   [[nodiscard]] auto getTickCount() const -> uint64_t;
   [[nodiscard]] auto getFineTickCount() const -> uint32_t;
   [[nodiscard]] auto getCoarseTickCount() const -> uint32_t { return m_ticks; }

@@ -1,4 +1,3 @@
-
 #include "cortex_m_hal/systick.h"
 
 #include "cortex_m_hal/registers.h"
@@ -19,6 +18,9 @@ void SysTick::init(uint32_t core_clk_hz) {
   s_systick_regs.CSR.bits.tickint = true;
   s_systick_regs.CSR.bits.enable = true;
 }
+
+void SysTick::disable() { s_systick_regs.CSR.bits.enable = false; }
+void SysTick::maskIrq() { s_systick_regs.CSR.bits.tickint = false; }
 
 auto SysTick::getTickCount() const -> uint64_t {
   uint32_t coarse = getCoarseTickCount();
